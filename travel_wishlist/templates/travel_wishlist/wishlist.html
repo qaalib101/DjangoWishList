@@ -11,8 +11,14 @@
 
 <div>
     {{ place.name }}
+    <form method="POST" action="{% url 'place_was_visited' %}">
+        {% csrf_token %}
+        <input type="hidden" name="pk" value="{{ place.pk }}">
+        <button type="submit">Visited</button>
+    </form>
 </div>
     {% empty %}
 
     <P>You have no places in your wishlist</P>
 {% endfor %}
+<a href="{% url 'places_visited' %}">Places you have visited</a>
